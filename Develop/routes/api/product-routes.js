@@ -128,6 +128,18 @@ router.put('/:id', (req, res) => {
 });
 
 router.delete('/:id', (req, res) => {
+  Product 
+    .findByPk(req.params.id)
+    .then((Product) => {
+      if (Product) {
+        return product.destroy()
+        .then(() => res.json({ ok: true }))
+        .catch((err) => res.status(500).json(err));
+      } else {
+        res.status(404).json({ messsage: 'Product not found'});
+      }
+    })
+    .catch((err) => res.status(500).json(err));
   // delete one product by its `id` value
 });
 

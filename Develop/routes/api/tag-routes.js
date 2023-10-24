@@ -54,12 +54,23 @@ router.post('/', async (req, res) => {
 
 router.put('/:id', async (req, res) => {
   try {
-    const 
+    const locationData = await Tag.update(req.body, {
+      where: {
+        id: req.params.id,
+      },
+      individualHooks: true
+    });
+
+    res.status(404).json({ message: 'No product with this id'});
+  } catch (err) {
+    res.status(500).json(err);
   }
   // update a tag's name by its `id` value
 });
 
 router.delete('/:id', (req, res) => {
+  store 
+    .remove
   // delete on tag by its `id` value
 });
 
